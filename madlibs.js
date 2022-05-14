@@ -27,11 +27,28 @@
  * Please go through this lesson: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/
  */
 function parseStory(rawStory) {
+  let ArrayofObjects = {word:""};
+  const result = rawStory.split(" ");
+  for(let i=0;i<result.length;i++)
+  {
+    //const reg=/(?<partofspeach>\[[vna]\])/
+    if ((/\[n\]/).test(result[i]) === true) {
+      ArrayofObjects.push({
+        word: result[i].replace("[n]", ""),
+        pos: "noun"
+      })
+    }
+    //const PosValue=result[i].match();
+    //let groups = result[i].match(reg);
+    //Output.word=result[i]
+    console.log(ArrayofObjects)
+    //console.log(Output)    
+  }
   // Your code here.
   return {}; // This line is currently wrong :)
 }
 
-/**
+/*
  * All your other JavaScript code goes here, inside the function. Don't worry about
  * the `then` and `async` syntax for now.
  * 
@@ -40,3 +57,10 @@ function parseStory(rawStory) {
 getRawStory().then(parseStory).then((processedStory) => {
   console.log(processedStory);
 });
+/* if ((/\[n\]/).test(word) === true) {
+      arrayOfWords.push({
+        word: word.replace("[n]", ""),
+        pos: "n"
+      })
+    }
+*/
