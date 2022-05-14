@@ -1,3 +1,4 @@
+
 /**
  * Complete the implementation of parseStory.
  * 
@@ -6,6 +7,7 @@
  * 
  * In your code, you are required (please read this carefully):
  * - to return a list of objects
+ * 
  * - each object should definitely have a field, `word`
  * - each object should maybe have a field, `pos` (part of speech)
  * 
@@ -26,9 +28,23 @@
  * There are multiple ways to do this, but you may want to use regular expressions.
  * Please go through this lesson: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/
  */
-function parseStory(rawStory) {
-  // Your code here.
-  return {}; // This line is currently wrong :)
+ let  test = document.querySelector('.madLibsEdit')
+
+
+
+
+
+
+ function parseStory(rawStory) {
+splitText=rawStory.split(" ")
+
+for (let i = 0; i < splitText.length; i++) {
+    myArr= []
+    myArr.push(splitText[i])
+  }
+
+console.log(splitText)
+ 
 }
 
 /**
@@ -38,5 +54,6 @@ function parseStory(rawStory) {
  * You'll want to use the results of parseStory() to display the story on the page.
  */
 getRawStory().then(parseStory).then((processedStory) => {
-  console.log(processedStory);
-});
+   console.log(processedStory);
+  });
+
