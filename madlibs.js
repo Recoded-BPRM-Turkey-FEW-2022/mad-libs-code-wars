@@ -30,20 +30,22 @@
  */
  let  test = document.querySelector('.madLibsEdit')
 
+ let    myArr= []
 
-
-
+wordObj={word:''}
 
 
  function parseStory(rawStory) {
 splitText=rawStory.split(" ")
+let regex= / []/
+
 
 for (let i = 0; i < splitText.length; i++) {
-    myArr= []
-    myArr.push(splitText[i])
+
+    myArr.push(new wordObj.word.splitText  )
   }
 
-console.log(splitText)
+console.log(myArr)
  
 }
 
