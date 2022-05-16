@@ -54,39 +54,8 @@ function parseStory(rawStory) {
         word: result[i],
       })
     }
-  editSection = document.querySelector('.madLibsPreview')
-  for (const value of Object.values(ArrayofObjects )) {
-  }
-  console.log(ArrayofObjects)
-
-  editSection.innerText+= value
-
-  //return ArrayofObjects 
 }
 }
-console.log(ArrayofObjects)
-/*const divmadLibsEdit=document.querySelector(".madLibsEdit");
-const paragraph=document.createElement("p");
-for(let i=0;i<ArrayofObjects.length;i++)
-{
-    const Input = document.createElement("INPUT");
-    Input.setAttribute("type", "text");
-    ArrayofObjects[i].word=Input
-    paragraph.innerHTML=ArrayofObjects[i]
-    divmadLibsEdit.appendChild(paragraph)
-}
-
-console.log(ArrayofObjects)*/
-//return ArrayofObjects
-
-
-/*
- * All your other JavaScript code goes here, inside the function. Don't worry about
- * the `then` and `async` syntax for now.
- * 
- * You'll want to use the results of parseStory() to display the story on the page.
- */
-
 getRawStory().then(parseStory).then((processedStory) => {
   console.log(processedStory);
 });
