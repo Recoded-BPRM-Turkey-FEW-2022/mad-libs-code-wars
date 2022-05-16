@@ -65,11 +65,11 @@ function parseStory(rawStory) {
   editSection = document.querySelector('.madLibsPreview')
 
   for (const value of Object.values(ArrayofObjects )) {
-  
+    editSection.innerText+= value.word
   }
   console.log(ArrayofObjects)
 
-  editSection.innerText+= value
+  
  
   //return ArrayofObjects 
 }
