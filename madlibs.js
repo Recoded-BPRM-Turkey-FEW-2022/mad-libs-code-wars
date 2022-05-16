@@ -28,7 +28,7 @@
  */
 function parseStory(rawStory) {
   let ArrayofObjects = [];
-  const result = rawStory.split(" ");
+  const result = rawStory.split(" ")
   for(let i=0;i<result.length;i++)
   {
     if ((/\[n\]/).test(result[i]) === true) {
@@ -56,18 +56,31 @@ function parseStory(rawStory) {
     }
   
   }
-  editSection = document.querySelector('.madLibsPreview')
-
-  for (const value of Object.values(ArrayofObjects )) {
-    editSection.innerText+= value.word
-  }
-  console.log(ArrayofObjects)
-
-  
- 
-  //return ArrayofObjects 
+  return ArrayofObjects 
 }
 
 getRawStory().then(parseStory).then((processedStory) => {
-  console.log(processedStory);
+  //console.log(processedStory);
+  Functionality(processedStory)
 });
+function Functionality(Array)
+{
+  editSection = document.querySelector('.madLibsPreview')
+  for (const value of Object.values(Array)) {
+    if(value.pos!=null)
+    {
+      const textInput=document.createElement("INPUT")
+      textInput.setAttribute("type", "text");
+      textInput.setAttribute("placeholder", Object.pos);
+      //document.body.appendChild(textInput);
+      editSection.appendchild(textInput)
+      value.word=textInput
+      editSection.innerText+= " "+value.word
+    }
+    else
+    {
+      editSection.innerText+= " "+value.word
+    }
+  }
+  console.log(Array)
+}
