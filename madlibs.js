@@ -27,26 +27,61 @@
  * Please go through this lesson: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/
  */
 function parseStory(rawStory) {
-  let ArrayofObjects = {word:""};
+  let ArrayofObjects = []
+ 
   const result = rawStory.split(" ");
   for(let i=0;i<result.length;i++)
   {
-    //const reg=/(?<partofspeach>\[[vna]\])/
-    if ((/\[n\]/).test(result[i]) === true) {
-      ArrayofObjects.push({
+    if((/\[n\]/).test(result[i]) !== true && (/\[v\]/).test(result[i]) !== true && (/\[a\]/).test(result[i]) !== true ){
+      ArrayofObjects.push(
+        {
+        word: result[i]
+      })
+    }
+    
+  else  if ((/\[n\]/).test(result[i]) == true) {
+      ArrayofObjects.push(
+        {
         word: result[i].replace("[n]", ""),
         pos: "noun"
       })
     }
-    //const PosValue=result[i].match();
-    //let groups = result[i].match(reg);
-    //Output.word=result[i]
-    console.log(ArrayofObjects)
-    //console.log(Output)    
+    else if ((/\[v\]/).test(result[i]) == true){
+      ArrayofObjects.push(
+        {
+        word: result[i].replace("[v]", ""),
+        pos: "verb  "
+      })
+    }
+    else if ((/\[a\]/).test(result[i]) == true){
+      ArrayofObjects.push(
+        {
+        word: result[i].replace("[a]", ""),
+        pos: "adjective "
+      })
+    }
+  
   }
-  // Your code here.
-  return {}; // This line is currently wrong :)
+  editSection = document.querySelector('.madLibsPreview')
+
+  for (const value of Object.values(ArrayofObjects )) {
+  
+  }
+  console.log(ArrayofObjects)
+
+  editSection.innerText+= value
+ 
+  //return ArrayofObjects 
 }
+
+
+
+
+
+
+
+
+
 
 /*
  * All your other JavaScript code goes here, inside the function. Don't worry about
