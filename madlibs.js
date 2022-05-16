@@ -27,26 +27,58 @@
  * Please go through this lesson: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/
  */
 function parseStory(rawStory) {
-  let ArrayofObjects = {word:""};
+  let ArrayofObjects = [];
   const result = rawStory.split(" ");
   for(let i=0;i<result.length;i++)
   {
-    //const reg=/(?<partofspeach>\[[vna]\])/
     if ((/\[n\]/).test(result[i]) === true) {
       ArrayofObjects.push({
         word: result[i].replace("[n]", ""),
         pos: "noun"
       })
     }
-    //const PosValue=result[i].match();
-    //let groups = result[i].match(reg);
-    //Output.word=result[i]
-    console.log(ArrayofObjects)
-    //console.log(Output)    
+    else if ((/\[v\]/).test(result[i]) === true) {
+      ArrayofObjects.push({
+        word: result[i].replace("[v]", ""),
+        pos: "verb"
+      })
+    }
+    else if ((/\[a\]/).test(result[i]) === true) {
+      ArrayofObjects.push({
+        word: result[i].replace("[a]", ""),
+        pos: "adjective"
+      })
+    }
+    else{
+      ArrayofObjects.push({
+        word: result[i],
+      })
+    }
+  editSection = document.querySelector('.madLibsPreview')
+  for (const value of Object.values(ArrayofObjects )) {
   }
-  // Your code here.
-  return {}; // This line is currently wrong :)
+  console.log(ArrayofObjects)
+
+  editSection.innerText+= value
+
+  //return ArrayofObjects 
 }
+}
+console.log(ArrayofObjects)
+/*const divmadLibsEdit=document.querySelector(".madLibsEdit");
+const paragraph=document.createElement("p");
+for(let i=0;i<ArrayofObjects.length;i++)
+{
+    const Input = document.createElement("INPUT");
+    Input.setAttribute("type", "text");
+    ArrayofObjects[i].word=Input
+    paragraph.innerHTML=ArrayofObjects[i]
+    divmadLibsEdit.appendChild(paragraph)
+}
+
+console.log(ArrayofObjects)*/
+//return ArrayofObjects
+
 
 /*
  * All your other JavaScript code goes here, inside the function. Don't worry about
@@ -54,13 +86,7 @@ function parseStory(rawStory) {
  * 
  * You'll want to use the results of parseStory() to display the story on the page.
  */
+
 getRawStory().then(parseStory).then((processedStory) => {
   console.log(processedStory);
 });
-/* if ((/\[n\]/).test(word) === true) {
-      arrayOfWords.push({
-        word: word.replace("[n]", ""),
-        pos: "n"
-      })
-    }
-*/
