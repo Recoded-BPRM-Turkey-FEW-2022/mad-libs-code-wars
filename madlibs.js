@@ -65,22 +65,32 @@ getRawStory().then(parseStory).then((processedStory) => {
 });
 function Functionality(Array)
 {
-  editSection = document.querySelector('.madLibsPreview')
-  for (const value of Object.values(Array)) {
-    if(value.pos!=null)
+  const editSection = document.querySelector('.madLibsEdit')
+  for (let i=0;i<Array.length;i++) {
+    if(Array[i].pos!=null)
     {
-      const textInput=document.createElement("INPUT")
-      textInput.setAttribute("type", "text");
-      textInput.setAttribute("placeholder", Object.pos);
-      //document.body.appendChild(textInput);
-      editSection.appendchild(textInput)
-      value.word=textInput
-      editSection.innerText+= " "+value.word
+      const Input=`<input type="text" placeholder="${Array[i].pos}" class="editable" maxlength="20">`
+      editSection.innerHTML+=" "+Input
     }
     else
     {
-      editSection.innerText+= " "+value.word
+      editSection.innerHTML+= " "+Array[i].word
     }
   }
-  console.log(Array)
+
+  //  HotKeys
+  /*$("input").keyup(function (event) {
+    if (event.keyCode == 13) {
+        textboxes = $("input");
+        currentBoxNumber = textboxes.index(this);
+        if (textboxes[currentBoxNumber + 1] != null) {
+            nextBox = textboxes[currentBoxNumber + 1];
+            nextBox.focus();
+            nextBox.select();
+        }
+        event.preventDefault();
+        return false;
+    }
+});*/
 }
+
