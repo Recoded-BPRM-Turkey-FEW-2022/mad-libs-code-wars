@@ -67,21 +67,31 @@ function Functionality(Array)
 {
   const editSection = document.querySelector('.madLibsEdit')
   const prevSection=document.querySelector('.madLibsPreview')
+  const Input=`<input type="text"  class="mytetx">`
+      const disapledInput=`<input type="text"  class="previnput" disabled>`
   for (let i=0;i<Array.length;i++) {
     if(Array[i].pos!=null)
     {
-      const Input=`<input type="text" placeholder="${Array[i].pos}"  maxlength="20">`
-      const disapledInput=`<input type="text" placeholder="${Array[i].pos}" class="previnput" maxlength="20" disabled>`
+      const Input=`<input type="text" placeholder="${Array[i].pos}" class="inputs">`
+      const disapledInput=`<input type="text" placeholder="${Array[i].pos}" class="previnput" disabled>`
       editSection.innerHTML+=" "+Input
       prevSection.innerHTML+=" "+disapledInput
+
+     
     }
     else
     {
       editSection.innerHTML+= " "+Array[i].word
       prevSection.innerHTML+= " "+Array[i].word
     }
+    
+   
+
   }
 
+  
+
+  
   //  HotKeys
   /*$("input").keyup(function (event) {
     if (event.keyCode == 13) {
