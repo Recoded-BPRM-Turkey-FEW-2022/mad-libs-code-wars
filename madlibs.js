@@ -56,15 +56,13 @@ function parseStory(rawStory) {
     }
   
   }
-  return ArrayofObjects 
+  return ArrayofObjects
 }
 
 getRawStory().then(parseStory).then((processedStory) => {
-  //console.log(processedStory);
-  StoryFunction(processedStory)
+  StoryFunctionality(processedStory)
 });
-
-function StoryFunction(Array)
+function StoryFunctionality(Array)
 {
   const editSection = document.querySelector('.madLibsEdit')
   const PreviewSection = document.querySelector('.madLibsPreview')
@@ -72,11 +70,11 @@ function StoryFunction(Array)
   for (let i=0;i<Array.length;i++) {
     if(Array[i].pos!=null)
     {
-      const EditInput=`<input type="text" placeholder="${Array[i].pos}" class="editable" maxlength="20" tabIndex="${counter}">`
+      const EditInput=`<input type="text" placeholder="${Array[i].pos}" class="EditInput" tabIndex="${counter}" maxlength="20">`
       counter+=1
-      const PreviwInput=`<input type="text" maxlength="20" >`
+      const PreviewInput=`<input type="text" class="PreviewInput" disabled maxlength="20">`
       editSection.innerHTML+=" "+EditInput
-      PreviewSection.innerHTML+=" "+PreviwInput
+      PreviewSection.innerHTML+=" "+PreviewInput
     }
     else
     {
@@ -84,18 +82,18 @@ function StoryFunction(Array)
       PreviewSection.innerHTML+= " "+Array[i].word
     }
 }
-var BlankInputs = document.querySelectorAll(".editable");
-for (var i = 0 ; i < BlankInputs.length; i++) {
+let BlankInputs = document.querySelectorAll(".EditInput");
+let ViewInputs = document.querySelectorAll(".PreviewInput");
+for (let i = 0 ; i < BlankInputs.length; i++) {
   //LiveUpdate
-  
+ BlankInputs[i].addEventListener('input', function () {
+        ViewInputs[i].value = BlankInputs[i].value;
+  })
   //HotKeys
   BlankInputs[i].addEventListener("keypress", function(e){
       if (e.keyCode  == 13) {
          e.preventDefault();
-         var nextInput = document.querySelectorAll('[tabIndex="' + (this.tabIndex + 1) +'"]');
-         if (nextInput.length === 0) {
-            nextInput = document.querySelectorAll('[tabIndex="1"]');
-         }
+         let nextInput = document.querySelectorAll('[tabIndex="' + (this.tabIndex + 1) +'"]');
          nextInput[0].focus();
       }
    })
