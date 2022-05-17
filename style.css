@@ -30,13 +30,33 @@ h1{
      margin: 5% 0;
      padding: 5%;
      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+     border-radius: 5px;
  }
 
  .madLibsPreview{
+    border-radius: 5px;
     margin: 5% 0;
-    padding: 20%;
+    padding:5%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-image: url('https://wallpapersflix.com/cool/wp-content/uploads/2020/10/Cool-Background-For-Laptop-1024x576.jpg');
     background-repeat: no-repeat;
     color: aliceblue;
  }
+
+
+ input {
+     width: 140px;
+    border-radius: 5px;
+    font-size: 16px;
+    height: 25px;
+    border: none;
+    color: rgb(255, 250, 250);
+    background: #5132c2;    
+    transition: .3s ease;}::placeholder{
+        text-align: center;
+        color: #e71feb;
+        font-size: 16px;
+    }
+    .previnput{
+        background: #d4cbf3;    
+    }
