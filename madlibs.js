@@ -61,36 +61,43 @@ function parseStory(rawStory) {
 
 getRawStory().then(parseStory).then((processedStory) => {
   //console.log(processedStory);
-  Functionality(processedStory)
+  StoryFunction(processedStory)
 });
-function Functionality(Array)
+
+function StoryFunction(Array)
 {
   const editSection = document.querySelector('.madLibsEdit')
+  const PreviewSection = document.querySelector('.madLibsPreview')
+  let counter=0;
   for (let i=0;i<Array.length;i++) {
     if(Array[i].pos!=null)
     {
-      const Input=`<input type="text" placeholder="${Array[i].pos}" class="editable" maxlength="20">`
-      editSection.innerHTML+=" "+Input
+      const EditInput=`<input type="text" placeholder="${Array[i].pos}" class="editable" maxlength="20" tabIndex="${counter}">`
+      counter+=1
+      const PreviwInput=`<input type="text" maxlength="20" >`
+      editSection.innerHTML+=" "+EditInput
+      PreviewSection.innerHTML+=" "+PreviwInput
     }
     else
     {
       editSection.innerHTML+= " "+Array[i].word
+      PreviewSection.innerHTML+= " "+Array[i].word
     }
-  }
-
-  //  HotKeys
-  /*$("input").keyup(function (event) {
-    if (event.keyCode == 13) {
-        textboxes = $("input");
-        currentBoxNumber = textboxes.index(this);
-        if (textboxes[currentBoxNumber + 1] != null) {
-            nextBox = textboxes[currentBoxNumber + 1];
-            nextBox.focus();
-            nextBox.select();
-        }
-        event.preventDefault();
-        return false;
-    }
-});*/
 }
-
+var BlankInputs = document.querySelectorAll(".editable");
+for (var i = 0 ; i < BlankInputs.length; i++) {
+  //LiveUpdate
+  
+  //HotKeys
+  BlankInputs[i].addEventListener("keypress", function(e){
+      if (e.keyCode  == 13) {
+         e.preventDefault();
+         var nextInput = document.querySelectorAll('[tabIndex="' + (this.tabIndex + 1) +'"]');
+         if (nextInput.length === 0) {
+            nextInput = document.querySelectorAll('[tabIndex="1"]');
+         }
+         nextInput[0].focus();
+      }
+   })
+}
+}
