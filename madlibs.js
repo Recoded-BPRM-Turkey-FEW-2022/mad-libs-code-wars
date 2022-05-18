@@ -27,16 +27,75 @@
  * Please go through this lesson: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/
  */
 function parseStory(rawStory) {
-  // Your code here.
-  return {}; // This line is currently wrong :)
+  let ArrayofObjects = [];
+  const result = rawStory.split(" ")
+  for(let i=0;i<result.length;i++)
+  {
+    if ((/\[n\]/).test(result[i]) === true) {
+      ArrayofObjects.push({
+        word: result[i].replace("[n]", ""),
+        pos: "noun"
+      })
+    }
+    else if ((/\[v\]/).test(result[i]) === true) {
+      ArrayofObjects.push({
+        word: result[i].replace("[v]", ""),
+        pos: "verb"
+      })
+    }
+    else if ((/\[a\]/).test(result[i]) === true) {
+      ArrayofObjects.push({
+        word: result[i].replace("[a]", ""),
+        pos: "adjective"
+      })
+    }
+    else{
+      ArrayofObjects.push({
+        word: result[i],
+      })
+    }
+  
+  }
+  return ArrayofObjects
 }
 
-/**
- * All your other JavaScript code goes here, inside the function. Don't worry about
- * the `then` and `async` syntax for now.
- * 
- * You'll want to use the results of parseStory() to display the story on the page.
- */
 getRawStory().then(parseStory).then((processedStory) => {
-  console.log(processedStory);
+  StoryFunctionality(processedStory)
 });
+function StoryFunctionality(Array)
+{
+  const editSection = document.querySelector('.madLibsEdit')
+  const PreviewSection = document.querySelector('.madLibsPreview')
+  let counter=0;
+  for (let i=0;i<Array.length;i++) {
+    if(Array[i].pos!=null)
+    {
+      const EditInput=`<input type="text" placeholder="${Array[i].pos}" class="EditInput" tabIndex="${counter}" maxlength="20">`
+      counter+=1
+      const PreviewInput=`<input type="text" class="PreviewInput" disabled maxlength="20">`
+      editSection.innerHTML+=" "+EditInput
+      PreviewSection.innerHTML+=" "+PreviewInput
+    }
+    else
+    {
+      editSection.innerHTML+= " "+Array[i].word
+      PreviewSection.innerHTML+= " "+Array[i].word
+    }
+}
+let BlankInputs = document.querySelectorAll(".EditInput");
+let ViewInputs = document.querySelectorAll(".PreviewInput");
+for (let i = 0 ; i < BlankInputs.length; i++) {
+  //LiveUpdate
+ BlankInputs[i].addEventListener('input', function () {
+        ViewInputs[i].value = BlankInputs[i].value;
+  })
+  //HotKeys
+  BlankInputs[i].addEventListener("keypress", function(e){
+      if (e.keyCode  == 13) {
+         e.preventDefault();
+         let nextInput = document.querySelectorAll('[tabIndex="' + (this.tabIndex + 1) +'"]');
+         nextInput[0].focus();
+      }
+   })
+}
+}
